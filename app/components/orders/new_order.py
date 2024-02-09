@@ -3,11 +3,11 @@ import flet as ft
 
 class NewOrder(ft.UserControl):
 
-    def __init__(self, new_order_function):
+    def __init__(self, new_order_function) -> None:
         super().__init__()
         self.new_order_function = new_order_function
 
-    def build(self):
+    def build(self) -> ft.Container:
         return ft.Container(
             content=ft.Row(
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
@@ -48,5 +48,5 @@ class NewOrder(ft.UserControl):
             padding=16,
             alignment=ft.alignment.center,
             border_radius=16,
-            border=ft.border.only(bottom=ft.border.BorderSide(2, ft.colors.GREY_500))
+            border=ft.border.only(bottom=ft.border.BorderSide(width=2, color=ft.colors.GREY_500))
         )

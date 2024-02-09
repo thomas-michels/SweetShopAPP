@@ -13,4 +13,8 @@ async def home_page(page: ft.Page):
     await page.add_async(CandyApp())
 
 
-ft.app(target=home_page, view=ft.WEB_BROWSER, port=4200)
+ft.app(
+    target=home_page,
+    view=ft.WEB_BROWSER, port=4200,
+    assets_dir="./app/assets",
+)
