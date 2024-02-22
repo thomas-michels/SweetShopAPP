@@ -51,11 +51,6 @@ class ListOrder(ft.UserControl):
                         ),
                     ),
                     self.orders
-                    # ft.Row(
-                    #     controls=[
-                    #     alignment=ft.MainAxisAlignment.CENTER,
-                    #     vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                    # ),
                 ],
             ),
             bgcolor=ft.colors.WHITE,
@@ -71,7 +66,10 @@ class ListOrder(ft.UserControl):
         order = Order(
             status="Teste",
             user_name="Nome test",
-            items=["Brigadeiro teste"],
+            items=[
+                {"name": "Brigadeiro de Neskiq", "quantity": 2},
+                {"name": "Panetone", "quantity": 5}
+            ],
             tag="FURB",
             price=999,
         )

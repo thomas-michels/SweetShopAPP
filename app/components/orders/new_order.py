@@ -21,7 +21,11 @@ class NewOrder(ft.UserControl):
                     ),
                     ft.Column(
                         controls=[
-                            ft.Text(value="Olá Nathália!", size=18),
+                            ft.Text(
+                                value="Olá Nathália!",
+                                size=18,
+                                weight=ft.FontWeight.BOLD,
+                            ),
                             ft.Text(
                                 value="O que vamos preparar hoje?",
                                 color=ft.colors.GREY_500
