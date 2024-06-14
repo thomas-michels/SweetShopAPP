@@ -9,7 +9,6 @@ class ListOrder(ft.UserControl):
         super().__init__()
 
     def build(self):
-        # self.orders = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
         self.orders = ft.ListView()
 
         return ft.Column(
@@ -64,8 +63,8 @@ class ListOrder(ft.UserControl):
 
     async def add_clicked(self, e):
         order = Order(
-            status="Teste",
-            user_name="Nome test",
+            status="DONE",
+            user_name="Nome testeeeee",
             items=[
                 {"name": "Brigadeiro de Neskiq", "quantity": 2},
                 {"name": "Panetone", "quantity": 5}

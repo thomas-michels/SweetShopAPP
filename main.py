@@ -3,14 +3,14 @@ from app.pages.home import CandyApp
 
 
 async def home_page(page: ft.Page):
-    page.title = "Candy APP"
+    page.title = "Minha Confeitaria"
     page.horizontal_alignment = ft.CrossAxisAlignment.START
     page.scroll = ft.ScrollMode.ADAPTIVE
     page.padding = 24
     page.theme_mode = ft.ThemeMode.LIGHT
     page.bgcolor = ft.colors.GREY_200
 
-    await page.add_async(CandyApp())
+    await page.add_async(CandyApp(page))
 
 
 ft.app(

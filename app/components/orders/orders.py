@@ -1,5 +1,13 @@
 import flet as ft
 from typing import List
+from app.models.orders import (
+    OrderStatus,
+    OrderStatusEnum,
+    PendingStatus,
+    InPreparationStatus,
+    DoneStatus
+)
+from app.models.tags import Tag
 
 
 class Order(ft.UserControl):
@@ -8,10 +16,10 @@ class Order(ft.UserControl):
         self, status: str, user_name: str, items: List[dict], tag: str, price: float
     ):
         super().__init__()
-        self.status = status
+        self.status = self.__set_status(status)
         self.user_name = user_name
         self.items = items
-        self.tag = tag
+        self.tag = self.__set_tag(tag)
         self.price = price
 
     def build(self):
@@ -37,19 +45,30 @@ class Order(ft.UserControl):
             max_lines=1
         )
 
-        self.tf_tag = ft.Text(
-            value=self.tag,
-            size=10,
-            tooltip="Tag",
-            max_lines=1
+        self.tf_tag = ft.Container(
+            content=ft.Text(
+                value=self.tag.text,
+                size=10,
+                tooltip="Tag",
+                max_lines=1
+            ),
+            alignment=ft.alignment.center,
+            padding=5,
+            bgcolor=self.tag.color,
+            border_radius=ft.border_radius.all(5),
         )
 
-        self.tf_status = ft.Text(
-            value=self.status,
-            color=ft.colors.WHITE,
-            bgcolor=ft.colors.GREEN_300,
-            tooltip="Status do pedido",
-            max_lines=1,
+        self.tf_status = ft.Container(
+            content=ft.Text(
+                value=self.status.label,
+                color=ft.colors.WHITE,
+                tooltip="Status do pedido",
+                max_lines=1,
+            ),
+            alignment=ft.alignment.center,
+            padding=5,
+            bgcolor=self.status.color,
+            border_radius=ft.border_radius.all(5),
         )
 
         return ft.Row(
@@ -94,3 +113,20 @@ class Order(ft.UserControl):
             ))
 
         return ft.Column(controls=items)
+
+    def __set_status(self, status: str) -> OrderStatus:
+        match status:
+            case OrderStatusEnum.PENDING:
+                return PendingStatus()
+            
+            case OrderStatusEnum.IN_PREPARATION:
+                return InPreparationStatus()
+            
+            case _:
+                return DoneStatus()
+
+    def __set_tag(self, tag: str) -> Tag:
+        return Tag(
+            text=tag,
+            color=ft.colors.GREY_300
+        )
